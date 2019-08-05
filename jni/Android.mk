@@ -1,3 +1,4 @@
+ifeq ($(TARGET_USE_JAMESDSP),true)
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
@@ -27,3 +28,4 @@ LOCAL_CPPFLAGS += -Wno-unused-parameter
 LOCAL_CFLAGS += -Wno-unused-parameter
 
 include $(BUILD_SHARED_LIBRARY)
+endif
