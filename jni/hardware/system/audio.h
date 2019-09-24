@@ -665,6 +665,7 @@ static inline bool audio_is_input_channel(audio_channel_mask_t channel)
             bits = 0;
         }
         // fall through
+        [[fallthrough]];
     case AUDIO_CHANNEL_REPRESENTATION_INDEX:
         return bits != 0;
     default:
@@ -687,6 +688,7 @@ static inline bool audio_is_output_channel(audio_channel_mask_t channel)
             bits = 0;
         }
         // fall through
+        [[fallthrough]];
     case AUDIO_CHANNEL_REPRESENTATION_INDEX:
         return bits != 0;
     default:
@@ -708,6 +710,7 @@ static inline uint32_t audio_channel_count_from_in_mask(audio_channel_mask_t cha
         // TODO: We can now merge with from_out_mask and remove anding
         bits &= AUDIO_CHANNEL_IN_ALL;
         // fall through
+        [[fallthrough]];
     case AUDIO_CHANNEL_REPRESENTATION_INDEX:
         return popcount(bits);
     default:
@@ -729,6 +732,7 @@ static inline uint32_t audio_channel_count_from_out_mask(audio_channel_mask_t ch
         // TODO: We can now merge with from_in_mask and remove anding
         bits &= AUDIO_CHANNEL_OUT_ALL;
         // fall through
+        [[fallthrough]];
     case AUDIO_CHANNEL_REPRESENTATION_INDEX:
         return popcount(bits);
     default:
