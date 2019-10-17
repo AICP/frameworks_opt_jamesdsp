@@ -1,4 +1,3 @@
-ifeq ($(TARGET_USE_JAMESDSP),true)
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
@@ -6,6 +5,7 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := libjamesdsp
 LOCAL_VENDOR_MODULE := true
 LOCAL_MODULE_RELATIVE_PATH := soundfx
+LOCAL_MODULE_TAGS := optional
 
 LOCAL_SRC_FILES := \
 	kissfft/kiss_fft.c \
@@ -28,4 +28,3 @@ LOCAL_CPPFLAGS += -Wno-unused-parameter
 LOCAL_CFLAGS += -Wno-unused-parameter
 
 include $(BUILD_SHARED_LIBRARY)
-endif
