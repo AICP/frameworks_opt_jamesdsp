@@ -27,4 +27,14 @@ LOCAL_SRC_FILES := \
 LOCAL_CPPFLAGS += -Wno-unused-parameter
 LOCAL_CFLAGS += -Wno-unused-parameter
 
+ifeq ($(BUILD_WITHOUT_VENDOR), true)
+LOCAL_POST_INSTALL_CMD := \
+	$(eval _overlay_path := $(TARGET_OUT_PRODUCT)/vendor_overlay/$(PRODUCT_TARGET_VNDK_VERSION)) \
+	$(foreach l, lib $(if $(filter true,$(TARGET_IS_64_BIT)),lib64), \
+	  $(eval _src := $(TARGET_OUT_VENDOR)/$(l)/soundfx/libjamesdsp.so) \
+	  $(eval _dst := $(_overlay_path)/$(l)/soundfx/libjamesdsp.so) \
+	  mkdir -p $(dir $(_dst)) && $(ACP) $(_src) $(_dst) ; \
+	)
+endif
+
 include $(BUILD_SHARED_LIBRARY)
