@@ -33,7 +33,7 @@ LOCAL_POST_INSTALL_CMD := \
 	$(foreach l, lib $(if $(filter true,$(TARGET_IS_64_BIT)),lib64), \
 	  $(eval _src := $(TARGET_OUT_VENDOR)/$(l)/soundfx/libjamesdsp.so) \
 	  $(eval _dst := $(_overlay_path)/$(l)/soundfx/libjamesdsp.so) \
-	  mkdir -p $(dir $(_dst)) && $(ACP) $(_src) $(_dst) ; \
+	  if [ -f $(_src) ]; then mkdir -p $(dir $(_dst)) && $(ACP) $(_src) $(_dst); fi; \
 	)
 endif
 
